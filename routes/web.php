@@ -16,3 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::group([],function(){
+    Route::get('test',[\App\Http\Controllers\TestController::class,'test'])->name('retest');
+    Route::get('aa',function(){
+        // return redirect()->to('test');
+        // return redirect()->route('retest');
+    });
+});
+
+Route::fallback(function(){
+    echo '404';
+});
+
