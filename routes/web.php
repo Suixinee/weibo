@@ -13,16 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::group([],function(){
-    Route::get('test',[\App\Http\Controllers\TestController::class,'test'])->name('retest');
-    Route::get('aa',function(){
-        // return redirect()->to('test');
-        // return redirect()->route('retest');
-    });
-});
+Route::get('/','StaticPagesController@home');
+Route::get('/help','StaticPagesController@help');
+Route::get('/about','StaticPagesController@about');
 
 Route::fallback(function(){
     echo '404';
