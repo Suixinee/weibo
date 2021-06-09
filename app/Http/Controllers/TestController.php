@@ -14,4 +14,7 @@ class TestController extends Controller
        dump(Route::currentRouteAction());
 
     }
+    public function aabb(){
+        return 'hhh';
+    }
 }
