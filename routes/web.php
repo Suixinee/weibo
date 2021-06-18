@@ -17,6 +17,11 @@ Route::get('/','StaticPagesController@home')->name('home');
 Route::get('/help','StaticPagesController@help')->name('help');
 Route::get('/about','StaticPagesController@about')->name('about');
 Route::get('/signup','UsersController@create')->name('signup');
+//会话管理
+Route::get('login', 'SessionsController@create')->name('login');
+Route::post('login', 'SessionsController@store')->name('login');
+Route::delete('logout', 'SessionsController@destroy')->name('logout');
+
 Route::resource('users','UsersController');
 Route::fallback(function(){
     echo '404';
