@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -40,8 +41,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function ($user) {
+            $user->activation_token = Str::random(10);
+        });
+    }
 
-    public function gravatar($size='100'){
+    public function gravatar($size = '100')
+    {
         $hash = md5(strtolower($this->attributes['email']));
         return 'https://www.wufu-app.com/static/index/default/images/20200821/ef5fce3d873619b99223514aee544ca1.jpg';
         return "http://www.gravatar.com/avatar/$hash?s=$size";
