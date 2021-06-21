@@ -14,10 +14,9 @@ class PasswordController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('throttle:2,1',[
-            'only'=>['showLinkRequestForm']
+        $this->middleware('throttle:10,1', [
+            'only' => ['showLinkRequestForm']
         ]);
-
     }
     //
     public function showLinkRequestForm()
@@ -80,8 +79,8 @@ class PasswordController extends Controller
                 session()->flash('denager', '令牌错误');
                 return redirect()->back();
             }
-            $user->update(['password'=>bcrypt($request->password)]);
-            session()->flash('success','密码重置成功,请重新登录');
+            $user->update(['password' => bcrypt($request->password)]);
+            session()->flash('success', '密码重置成功,请重新登录');
             return redirect()->route('login');
         }
         session()->flash('danger', '未找到重置记录');
