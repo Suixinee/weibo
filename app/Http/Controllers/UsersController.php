@@ -94,7 +94,7 @@ class UsersController extends Controller
         $to = $user->email;
         $subejct = '感谢注册webAPP应用!请确认你的邮箱';
         Mail::send($view, $data, function ($message) use ($from, $name, $to, $subejct) {
-            $message->from($from, $name)->to($to)->subject($subejct);
+            $message->to($to)->subject($subejct);
         });
     }
     public function confirmEmail($token){
