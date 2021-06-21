@@ -55,4 +55,7 @@ class User extends Authenticatable
         return 'https://www.wufu-app.com/static/index/default/images/20200821/ef5fce3d873619b99223514aee544ca1.jpg';
         return "http://www.gravatar.com/avatar/$hash?s=$size";
     }
+    public function statuses(){
+        return $this->hasMany(Status::class);
+    }
 }
