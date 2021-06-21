@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Hash;
 
 class PasswordController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('throttle:2,1',[
+            'only'=>['showLinkRequestForm']
+        ]);
+
+    }
     //
     public function showLinkRequestForm()
     {
