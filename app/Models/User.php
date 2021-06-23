@@ -87,8 +87,12 @@ class User extends Authenticatable
         $this->followings()->detach($user_ids,false);
     }
     //判断是否在关注列表里
-    public function isFollowings($user_id){
-        return $this->followings()->contains($user_id);
+    public function isFollowing($user_id)
+    {
+        // dump($this->followers());
+        // dump($this->followers);
+
+        return $this->followings->contains($user_id);
     }
 
 }
